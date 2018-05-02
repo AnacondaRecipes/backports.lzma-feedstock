@@ -11,13 +11,14 @@ source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    - 0001-Add-another-fallback-for-test.support-import.patch
+    # not needed in 0.0.10
+    #- 0001-Add-another-fallback-for-test.support-import.patch
     - 0002-Fix-name-of-extension.patch
     - 0003-Compute-name-of-lzma-library.patch
     - 0004-Add-compiler-flag-to-realign-stack-for-32bit-gcc.patch
 
 build:
-  number: 2
+  number: 1
   script:
     - python setup.py build_ext --include-dirs "%LIBRARY_PREFIX%\mingw-w64\include" --library-dirs "%LIBRARY_PREFIX%\mingw-w64\lib"  # [win and py27]
     - python setup.py install
